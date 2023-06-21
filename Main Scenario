@@ -29,6 +29,12 @@ struct Goblin {
     int defense;
 };
 
+// Linked list to store player's progress at each level
+struct LevelNode {
+    Player* player;
+    LevelNode* next;
+};
+
 // Function to generate a random role for the player
 string getRandomRole() {
     string roles[] = {"Mage", "Warrior", "Hunter", "Tanker", "Priest"};
@@ -131,6 +137,12 @@ void playGame() {
 
     cout << "Welcome, " << player->name << "! Your adventure begins..." << endl;
 
+    // Create the first level node
+    LevelNode* head = new LevelNode;
+    head->player = player;
+    head->next = nullptr;
+    LevelNode* currentLevel = head;
+
     while (player->health > 0) {
         cout << "=== Level " << player->level << " ===" << endl;
         displayStatus(player);
@@ -145,10 +157,22 @@ void playGame() {
 
         battle(player, goblin);
         cout << endl;
+
+        // Create the next level node and link it to the current level
+        LevelNode* nextLevel = new LevelNode;
+        nextLevel->player = player;
+        nextLevel->next = nullptr;
+        currentLevel->next = nextLevel;
+        currentLevel = nextLevel;
     }
 
-    // Game over, delete the player
-    delete player;
+    // Game over, delete the player and level nodes
+    while (head != nullptr) {
+        LevelNode* temp = head;
+        head = head->next;
+        delete temp->player;
+        delete temp;
+    }
 }
 
 // Main function
