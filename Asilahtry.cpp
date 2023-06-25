@@ -14,10 +14,10 @@ struct Player {
     string role;
     int level;
     int strength;
-    int speed;
-    int physical;
+   int speed;
+   int physical;
     int magicPower;
-    int statusPoints;
+   int statusPoints;
     int health;
     Player* next;
 };
@@ -41,7 +41,7 @@ struct LevelNode {
 
 // Function to generate a random role for the player
 string getRandomRole() {
-    string roles[] = {"Mage", "Warrior", "Hunter", "Tanker", "Priest"};
+    string roles[] = {"Mage", "Warrior", "Rogue"};
     int index = rand() % 5;
     return roles[index];
 }
@@ -57,8 +57,8 @@ Player* createPlayer(const string& name) {
     player->strength = 10;
     player->speed = 10;
     player->physical = 10;
-    player->magicPower = 10;
-    player->statusPoints = 0;
+   	player->magicPower = 10;
+  	player->statusPoints = 0;
     player->health = 100;
     player->next = nullptr;
     return player;
@@ -80,15 +80,43 @@ void displayStatus(const Player* player) {
 }
 
 // Function to create a new monster
+//Monster createMonster(int level) {
+//    Monster monster;
+//    monster.name = "Goblin";
+//    monster.health = 50 + (level - 1) * 10;
+//    monster.attack = 10 + (level - 1) * 2;
+//    monster.defense = 5 + (level - 1) * 1;
+//    monster.experience = 20;
+//    return monster;
+//}
+
 Monster createMonster(int level) {
     Monster monster;
-    monster.name = "Goblin";
-    monster.health = 50 + (level - 1) * 10;
-    monster.attack = 10 + (level - 1) * 2;
-    monster.defense = 5 + (level - 1) * 1;
-    monster.experience = 20;
-    return monster;
+
+    if (level == 1) {
+        monster.name = "Goblin";
+        monster.health = 50; //+ (level - 1) * 10;
+        monster.attack = 10; //+ (level - 1) * 2;
+        monster.defense = 5; //+ (level - 1) * 1;
+        monster.experience = 20;
+    } else if (level == 2) {
+        monster.name = "Skeleton";
+        monster.health = 70 ;//+ (level - 1) * 10;
+        monster.attack = 15 ;//+ (level - 1) * 2;
+        monster.defense = 7 ;//+ (level - 1) * 1;
+        monster.experience = 30;
+    } else if (level == 3){
+        monster.name = "Dragon";
+        monster.health = 90 ;//+ (level - 1) * 10;
+        monster.attack = 20 ;//+ (level - 1) * 2;
+        monster.defense = 10 ;//+ (level - 1) * 1;
+        monster.experience = 50;
+    }	
+    else { 
+	}
+   return monster;
 }
+
 
 // Function to simulate a battle between player and monster
 void battle(Player& player, Monster& monster) {
@@ -105,15 +133,17 @@ void battle(Player& player, Monster& monster) {
         }
         player.health -= monsterDamage;
 
-        cout << "Player attacks the " << monster.name << " for " << playerDamage << " damage." << endl;
-        cout << "The " << monster.name << " attacks the player for " << monsterDamage << " damage." << endl;
+//        cout << "Player attacks the " << monster.name << " for " << playerDamage << " damage." << endl;
+//        cout << "The " << monster.name << " attacks the player for " << monsterDamage << " damage." << endl;
     }
 
     if (player.health > 0) {
         cout << "Congratulations! You defeated the " << monster.name << "." << endl;
         player.level++;
         player.statusPoints += 2;
-        player.health = 100;
+       // player.health = 100;
+        player.physical +=10;
+        player.strength +=10;
     } else {
         cout << "You were defeated by the " << monster.name << ". Game over!" << endl;
     }
@@ -223,16 +253,14 @@ void playGame() {
     ifstream inputFile("Scenario.txt");
 	
 	string paragraph;
-    int paragraphCount = 0;
+    //int paragraphCount = 0;
     
 	while (getline(inputFile, paragraph)) {
         if (paragraph.empty()) {
             // Skip empty lines between paragraphs
             continue;
         }
-
-        paragraphCount++;
-        cout << "\n";
+        
         cout << paragraph << endl;
 
         //cout << "Press any key to continue to the next paragraph...";
@@ -250,7 +278,7 @@ void playGame() {
     head->next = nullptr;
     LevelNode* currentLevel = head;
 
-    while (player->health > 0) {
+    while (player->health > 0 && player->level <=3 ) {
         cout << "=== Level " << player->level << " ===" << endl;
         displayStatus(player);
 
@@ -273,6 +301,12 @@ void playGame() {
         currentLevel = nextLevel;
     }
 
+	if (player->level >= 3) {
+        cout << "Congratulations! You have reached level 3. You completed the game!" << endl;
+    } else {
+        cout << "Game over!" << endl;
+    }
+    
     // Game over, delete the player and level nodes
     while (head != nullptr) {
         LevelNode* temp = head;
@@ -300,7 +334,7 @@ int main() {
 	 
      else 
 	 {
-     	cout << "You put the wrong answer.";
+     	cout << "You put invalid choice!";
 	 }
 
     return 0;
