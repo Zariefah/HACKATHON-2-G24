@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <string>
+#include <iomanip>
 #include <fstream>
 
 using namespace std;
@@ -10,14 +11,12 @@ using namespace std;
 struct Player {
     string name;
    	int age;
-  //  string gender;
     string role;
     int level;
     int strength;
-   int speed;
-   int physical;
+  	int physical;
     int magicPower;
-   int statusPoints;
+	int statusPoints;
     int health;
     Player* next;
 };
@@ -51,11 +50,9 @@ Player* createPlayer(const string& name, const int &age) {
     Player* player = new Player;
     player->name = name;
     player->age = age;
-   // player->gender = gender;
     player->role = getRandomRole();
     player->level = 1;
     player->strength = 10;
-   // player->speed = 10;
     player->physical = 10;
    	player->magicPower = 10;
   	player->statusPoints = 0;
@@ -67,60 +64,60 @@ Player* createPlayer(const string& name, const int &age) {
 // Function to display player's status
 void displayStatus(const Player* player) {
     cout << "Name			: " << player->name << endl;
-   	cout << "Age: " << player->age << endl;
-    //cout << "Gender: " << player->gender << endl;
+	cout << "Age			: " << player->age << endl;
     cout << "Role			: " << player->role << endl;
     cout << "Level			: " << player->level << endl;
     cout << "Strength		: " << player->strength << endl;
-   // cout << "Speed			: " << player->speed << endl;
     cout << "Physical		: " << player->physical << endl;
-   // cout << "Magic Power	: " << player->magicPower << endl;
-   // cout << "Status Points		: " << player->statusPoints << endl;
     cout << "Health			: " << player->health << endl;
     // insert coins
 }
 
-// Function to create a new monster
-//Monster createMonster(int level) {
-//    Monster monster;
-//    monster.name = "Goblin";
-//    monster.health = 50 + (level - 1) * 10;
-//    monster.attack = 10 + (level - 1) * 2;
-//    monster.defense = 5 + (level - 1) * 1;
-//    monster.experience = 20;
-//    return monster;
-//}
+// Function to display Monster status
+void displayStatistic(const Monster monster) {
+	cout << "\n=========== Monster " << monster.name << " Statistic =============" << endl;
+	cout << "Health 			: " << monster.health << endl;
+	cout << "Attack 			: " << monster.attack << endl;
+	cout << "Defense			: " << monster.defense << endl;
+	cout << "Experience		: " << monster.experience << endl;
+	cout << "====================================================" << endl;
+}
 
+// Function to create a new monster
 Monster createMonster(int level) {
     Monster monster;
 
     if (level == 1) {
+    	// Goblin Monster
         monster.name = "Goblin";
         monster.level = level;
-        monster.health = 50; //+ (level - 1) * 10;
-        monster.attack = 15; //+ (level - 1) * 2;
-        monster.defense = 5; //+ (level - 1) * 1;
+        monster.health = 50; 
+        monster.attack = 15; 
+        monster.defense = 5; 
         monster.experience = 20;
-        // insert goblin
+        // insert file goblin scene
+        
     } else if (level == 2) {
+    	// Zombie Monster
         monster.name = "Zombie";
         monster.level = level;
-        monster.health = 70 ;//+ (level - 1) * 10;
-        monster.attack = 30 ;//+ (level - 1) * 2;
-        monster.defense = 7 ;//+ (level - 1) * 1;
+        monster.health = 70 ;
+        monster.attack = 30 ;
+        monster.defense = 7 ;
         monster.experience = 30;
-        //insert file zombie
-    } else if (level == 3){
+        //insert file zombie scene
+        
+    } else {//(level == 3)
+    	// White Dragon Monster
         monster.name = "White Dragon";
         monster.level = level;
-        monster.health = 90 ;//+ (level - 1) * 10;
-        monster.attack = 50 ;//+ (level - 1) * 2;
-        monster.defense = 10 ;//+ (level - 1) * 1;
+        monster.health = 90 ;
+        monster.attack = 50 ;
+        monster.defense = 10 ;
         monster.experience = 50;
-        //insert dragon file.
+        //insert file dragon scene
     }	
-    else { 
-	}
+    
    return monster;
 }
 
@@ -129,43 +126,49 @@ Monster createMonster(int level) {
 void battle(Player& player, Monster& monster) {
 	int playerDamage, monsterDamage;
     while (player.health > 0 && monster.health > 0) {
-        int playerDamage = player.strength - monster.defense; //10-5= 5 // ==0
-//        if (playerDamage < 0) {
-//            playerDamage = 0;
-//        }
+        
+		int playerDamage = player.strength - monster.defense; //10-5= 5 // ==0
         monster.health -= playerDamage; //50 -5 =45-5=0
 
         int monsterDamage = monster.attack - player.physical;//20-10=10 -
-//        if (monsterDamage < 0) {
-//            monsterDamage = 0;
-//        }
         player.health -= monsterDamage;//100-10=90-
 
- 
     }
     
-	cout << "Player attacks the " << monster.name << " for " << player.strength - monster.defense << " damage." << endl;
+	cout << "\nPlayer attacks the " << monster.name << " for " << player.strength - monster.defense << " damage." << endl;
     cout << "The " << monster.name << " attacks the player for " << monster.attack - player.physical << " damage." << endl;
-    cout << "Now player has health " << player.health << "." <<endl;
+    cout << endl;
         
     if (player.health > 0) {//health = 90
-        cout << "Congratulations! You defeated the " << monster.name << "." << endl;
+        cout << "\nCongratulations! You defeated the " << monster.name << "." << endl;
+        cout << "Now player has health only " << player.health << "." <<endl;
         player.level++;
-       // player.statusPoints += 2;
-        player.health += 10;
         player.physical +=15;
-        player.strength +=15;
+        player.strength +=15; 
+        cout << "\n\nContinue to next level...." ;
+        cin.ignore();
     } else {
-        cout << "You were defeated by the " << monster.name << ". Game over!" << endl;
+        cout << "\nYou were defeated by the " << monster.name << ". Game over!" << endl;
     }
+}
+
+//function retreat
+void retreat(Player &player){
+	cout << "\nYou retreat from the battle and start to training. To gain more 10 points of health, physical and strength." << endl;
+	player.health =+10;
+	player.physical =+10;
+	player.strength =+10;
+	
+	cout << "\nAfter a few days you have been training, you continue the level." <<endl;
+	cout << "*******************************************************************************************************************" << endl;
+	cin.ignore();
 }
 
 // Function for Warrior specific skill
 void useWarriorSkill(Player& player, Monster& monster) {
+	
     int playerDamage = player.strength * 2 - monster.defense;
-//    if (playerDamage < 0) {
-//        playerDamage = 0;
-//    }
+
     monster.health -= playerDamage;
 
     cout << "Player uses Warrior's skill: Mighty Strike!" << endl;
@@ -174,6 +177,7 @@ void useWarriorSkill(Player& player, Monster& monster) {
     //if monster still alive after using role's skill
     if (monster.health>0){
     	int choice;
+    	cout << "\n\nWARNING !! " <<endl;
     	cout << "The " << monster.name << " still have " << monster.health << " health. You need to:" <<endl;
     	cout << "1. Battle" <<endl;
     	cout << "2. Retreat" << endl;
@@ -182,18 +186,19 @@ void useWarriorSkill(Player& player, Monster& monster) {
     	switch(choice){
 			case 1: battle(player,monster);
     				break;
-    		case 2: cout << "You retreat from battle. Game over!" <<endl;
+    		case 2: retreat(player);
 					break;
 			default: cout << "Invalid choice.";
 					break;	
 		}
-    		
+			
 	}
 	else //monster.health <=0
 	{
-		cout << "Congratulations. You defeated the monster " << monster.name <<endl;
+		cout << "\nCongratulations. You defeated the monster " << monster.name <<"."<<endl;
 	}
 }
+
 
 // Function for Mage specific skill
 void useMageSkill(Player& player, Monster& monster) {
@@ -217,7 +222,7 @@ void useMageSkill(Player& player, Monster& monster) {
     	switch(choice){
 			case 1: battle(player,monster);
     				break;
-    		case 2: cout << "You retreat from battle. Game over!" <<endl;
+    		case 2: retreat(player);
 					break;
 			default: cout << "Invalid choice.";
 					break;	
@@ -255,7 +260,7 @@ void usePriestSkill(Player& player, Monster& monster) {
     	switch(choice){
 			case 1: battle(player,monster);
     				break;
-    		case 2: cout << "You retreat from battle. Game over!" <<endl;
+    		case 2: retreat(player);
 					break;
 			default: cout << "Invalid choice.";
 					break;	
@@ -300,7 +305,7 @@ void playerTurn(Player& player, Monster& monster) {
             cout << "You relax and restore 20 health points." << endl;
             break;
         case 4:
-            cout << "You retreat from the battle. Game over!" << endl;
+            retreat(player);
             break;
         default:
             cout << "Invalid choice. Try again." << endl;
@@ -316,7 +321,7 @@ void playGame() {
     string name, gender;
     int age;
 
-    cout << "Enter your name:  ";
+    cout << "\nEnter your name:  ";
     cin >> name;
 
     cout << "Enter your age: ";
@@ -327,7 +332,7 @@ void playGame() {
 
     Player* player = createPlayer(name,age);
 
-    cout << "Welcome, " << player->name << "! Your adventure begins...\n" << endl;
+    cout << "\nWelcome, " << player->name << "! Your adventure begins...\n" << endl;
     cin.ignore();
     
     ifstream inputFile("Scenario.txt");
@@ -357,17 +362,20 @@ void playGame() {
     head->player = player;
     head->next = nullptr;
     LevelNode* currentLevel = head;
-
+	
+	cout << "\nBut before that, to join the war between The Great Creature and The Strong Soldiers, everyone who wishes to participate must overcome all " <<
+			" the LEVELS they will encounter.\n" <<endl;
+	cin.ignore();
+	
     while (player->health > 0 && player->level <=3 ) {
-        cout << "=== Level " << player->level << " ===" << endl;
+        cout << "=================== Level " << player->level << " ====================" << endl;
         displayStatus(player);
         
-		// story: lawan monster tu kena masuk dungeon ikut level
-		cout << "To complete this game you need to enter the dungeon by level." << endl;
 		
         Monster monster = createMonster(player->level);
 		
-        cout << "Prepare to battle a " << monster.name << " (Level " << monster.level  << ")!" << endl;
+        cout << "\nPrepare to battle a " << monster.name << " (Level " << monster.level  << ")!" << endl;
+        displayStatistic(monster);
 
         cout << "Press any key to start the battle...";
         cin.ignore();
@@ -384,9 +392,14 @@ void playGame() {
         currentLevel = nextLevel;
     }
 
-	if (player->level >= 3) {
-        cout << "Congratulations! You have reached level 3. You completed the game!" << endl;
-    } else {
+	if (player->level >= 3 && player->health >0) {
+        cout << "Congratulations! You have reached level 3. You completed the Level!" << endl;
+        // masuk last file....
+        
+        
+    } else if (player->level >= 3 && player->health <=0){
+    	cout << "You have died at the last level. Game Over!" << endl;
+	} else {
         cout << "Game over!" << endl;
     }
     
@@ -401,24 +414,31 @@ void playGame() {
 
 // Main function
 int main() {
-    cout << "=== WELCOME TO MONSTER WAR GAME ===" << endl;
+    cout << "===================== WELCOME TO MONSTER WAR GAME =====================" << endl;
     char result; 
-	cout << "Are you sure want to play this game?(y/n): ";
-    cin >> result;
+	cout << "\nAre you sure want to play this game?(y/n): ";
+    
+    bool answer;
+	while( answer !=true){
+		cin >> result;
    
-     if (result=='y')
+     if (result=='y' || result=='Y')
      {
      	playGame();
+     	return 0;
 	 }
 	 
-	 else if (result=='n'){
+	 else if (result=='n'|| result=='N'){
 	 	return 0;
 	 }
 	 
      else 
 	 {
-     	cout << "You put invalid choice!";
+     	cout << "\nYou put invalid choice!"<< endl;
+     	cout << "Are you sure want to play this game?(y/n): ";
+    
+		answer ==true;
 	 }
-
+	}
     return 0;
 }
