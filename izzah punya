@@ -1,0 +1,400 @@
+#include <iostream>
+#include <string>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
+
+// Forward declaration of classes
+class Player;
+class Monster;
+
+// Class for player
+class Player {
+private:
+   
+    string password;
+    string name;
+    int age;
+    string gender;
+    string role;
+    int level;
+    int coins;
+    int strength;
+    int defense;
+    int health;
+    int goblinsDefeated; // Number of goblins defeated
+public: 
+    string username;
+    Player(string username, string password);
+    void createPlayer();
+    void printPlayerStats();
+    void attackMonster(Monster* monster);
+    void useItem(Monster* monster);
+    void retreat();
+    void levelUp();
+    bool checkCredentials(string username, string password);
+    void playLevel1();
+    void playLevel2();
+    void playLevel3();
+    void playLevel4();
+    void playLevel5();
+};
+
+// Class for monster
+class Monster {
+private:
+    string name;
+    int level;
+    int health;
+public:
+    Monster(string name, int level, int health);
+    void printMonsterStats();
+    void decreaseHealth(int amount);
+    int getHealth();
+};
+
+// Player class implementation
+Player::Player(string username, string password) {
+    this->username = username;
+    this->password = password;
+}
+
+void Player::createPlayer() {
+    cout << "Enter your name: ";
+    cin >> name;
+    cout << "Enter your age: ";
+    cin >> age;
+    cout << "Enter your gender: ";
+    cin >> gender;
+
+    // Randomly assign a role
+    string roles[] = { "Mage", "Warrior", "Hunter", "Tanker", "Priest" };
+    int randomIndex = rand() % 5;
+    role = roles[randomIndex];
+
+    level = 1;
+    coins = 0;
+    strength = 10;
+    defense = 5;
+    health = 100;
+    goblinsDefeated = 0;
+}
+
+void Player::printPlayerStats() {
+    cout << "Player Statistics" << endl;
+    cout << "-----------------" << endl;
+    cout << "Name: " << name << endl;
+    cout << "Age: " << age << endl;
+    cout << "Gender: " << gender << endl;
+    cout << "Role: " << role << endl;
+    cout << "Level: " << level << endl;
+    cout << "Coins: " << coins << endl;
+    cout << "Strength: " << strength << endl;
+    cout << "Defense: " << defense << endl;
+    cout << "Health: " << health << endl;
+    cout << "-----------------" << endl;
+}
+
+void Player::attackMonster(Monster* currentMonster) {
+    cout << "Player attacks the monster!" << endl;
+
+    // Check the player's role
+    if (role == "Mage") {
+        cout << "Choose your power:" << endl;
+        cout << "1. Black Magic" << endl;
+        // Add more power options specific to the Mage role if needed
+
+        int powerOption;
+        cin >> powerOption;
+
+        switch (powerOption) {
+            case 1:
+                cout << "Black Magic!" << endl;
+                cout << "The goblins feel fear." << endl;
+                cout << "Goblins' health decrease by 7" <<endl;
+                // Decrease the monster's health
+                currentMonster->decreaseHealth(7);
+                
+                // Check if the monster is defeated
+                if (currentMonster->getHealth() <= 0) {
+                    cout << "The monster is defeated!" << endl;
+                    // Update player and monster stats accordingly
+                    goblinsDefeated++;
+                    levelUp();
+                }
+                break;
+            // Add more cases for other power options if needed
+            default:
+                cout << "Invalid power option." << endl;
+                break;
+        }
+    } else {
+        cout << "Invalid role for attacking." << endl;
+    }
+    
+    cout<<"Goblins defated: "<< goblinsDefeated << endl;
+}
+
+
+void Player::useItem(Monster* currentMonster) {
+    cout << "Player uses an item!" << endl;
+    cout << "Choose an item from your inventory:" << endl;
+    cout << "1. Venom Stick" << endl;
+    // Add more item options if needed
+
+    int itemOption;
+    cin >> itemOption;
+
+    switch (itemOption) {
+        case 1:
+            cout << "Venom Stick!" << endl;
+            cout << "The goblins feel sick." << endl;
+            cout << "Goblins' health decrease by 6"<<endl;
+            // Decrease the monster's health
+            currentMonster->decreaseHealth(6);
+            
+            // Check if the monster is defeated
+                if (currentMonster->getHealth() <= 0) {
+                    cout << "The monster is defeated!" << endl;
+                    // Update player and monster stats accordingly
+                    goblinsDefeated++;
+                    levelUp();
+                }
+            break;
+        // Add more cases for other item options if needed
+        default:
+            cout << "Invalid item option." << endl;
+            break;
+    }
+     cout << "Goblins defeated: " << goblinsDefeated << endl; // Print the number of goblins defeated
+}
+
+
+void Player::retreat() {
+    cout << "Player retreats from the battle!" << endl;
+    // Implement retreat logic here
+    // Update player statistics accordingly
+    // Use level, coins, etc.
+}
+
+void Player::levelUp() {
+    cout << "Player levels up to level " << level << "!" << endl;
+    // Implement level up logic here
+    // Update player statistics accordingly
+    // Use level, coins, strength, etc.
+}
+
+bool Player::checkCredentials(string username, string password) {
+    return (this->username == username && this->password == password);
+}
+
+void Player::playLevel1() {
+    cout << "You have entered Level 1: Defeat the GOBLIN" << endl;
+    cout << "Select your option:" << endl;
+    cout << "1. Continue" << endl;
+    cout << "2. Purchase items" << endl;
+    cout << "3. Exit" << endl;
+
+    int choice;
+    cin >> choice;
+
+    switch (choice) {
+        case 1:
+            {
+                cout << "Continuing to the game..." << endl;
+                // Display goblin details
+                int numGoblins = 2; // Number of goblins before the boss goblin
+                Monster goblin("Goblin", 1, 10);
+                goblin.printMonsterStats();
+
+                while (numGoblins > 0) {
+                    cout << "Choose your action:" << endl;
+                    cout << "1. Attack" << endl;
+                    cout << "2. Use items" << endl;
+                    cout << "3. Retreat" << endl;
+
+                    int action;
+                    cin >> action;
+
+                    switch (action) {
+                        case 1:
+                            // Implement attack logic
+                            attackMonster(&goblin);
+                            break;
+                            // Update player and monster stats accordingly
+                            if (goblin.getHealth() <= 0) {
+                                cout << "You defeated the Goblin!" << endl;
+                                numGoblins--;
+                                goblin.decreaseHealth(-10); // Reset goblin's health
+                                goblinsDefeated++;
+                            
+	                            // Check if all goblins are defeated
+					            if (numGoblins == 0) {
+					                cout << "Congratulations! You defeated all the goblins." << endl;
+					                levelUp();
+					
+					                // Check if the player wants to proceed to Level 2
+					                cout << "Do you want to continue to Level 2?" << endl;
+					                cout << "1. Yes" << endl;
+					                cout << "2. No" << endl;
+					
+					                int continueChoice;
+					                cin >> continueChoice;
+					                
+					                 if (continueChoice == 1) {
+                  						  playLevel2();
+                					}
+            					}
+                            }
+                            break;
+                        case 2:
+                            // Implement item usage logic
+                            useItem(&goblin);
+                            break;
+                        case 3:
+                            // Implement retreat logic
+                            retreat();
+                            break;
+                        default:
+                            cout << "Invalid action. Please choose again." << endl;
+                            break;
+                    }
+
+                    // Check if the player's health reaches 0
+                    if (health <= 0) {
+                        cout << "Player's health reached 0. Game over!" << endl;
+                        return;
+                    }
+                }
+			}
+               
+        case 2:
+            cout << "Entering the item shop..." << endl;
+            // Implement item shop logic
+            break;
+        case 3:
+            cout << "Exiting the game..." << endl;
+            break;
+        default:
+            cout << "Invalid choice. Exiting the game..." << endl;
+            break;
+    }
+}
+
+void Player::playLevel2() {
+    // Level 2 gameplay logic
+}
+
+void Player::playLevel3() {
+    // Level 3 gameplay logic
+}
+
+void Player::playLevel4() {
+    // Level 4 gameplay logic
+}
+
+void Player::playLevel5() {
+    // Level 5 gameplay logic
+}
+
+// Monster class implementation
+Monster::Monster(string name, int level, int health) {
+    this->name = name;
+    this->level = level;
+    this->health = health;
+}
+
+void Monster::printMonsterStats() {
+    cout << "Monster Statistics" << endl;
+    cout << "------------------" << endl;
+    cout << "Name: " << name << endl;
+    cout << "Level: " << level << endl;
+    cout << "Health: " << health << endl;
+    cout << "------------------" << endl;
+}
+
+void Monster::decreaseHealth(int amount) {
+    health -= amount;
+}
+
+int Monster::getHealth() {
+    return health;
+}
+
+// Function prototypes
+void displayWelcomeMessage();
+void signUp(Player** currentPlayer);
+void logIn(Player** currentPlayer);
+void enterGame(Player* currentPlayer);
+void deletePlayer(Player* currentPlayer);
+
+void displayWelcomeMessage() {
+    cout << "Welcome to the Player vs. Monster game!" << endl;
+    cout << "**************************************" << endl;
+    cout << "Instructions:" << endl;
+    cout << "- Sign up or log in to play the game." << endl;
+    cout << "- Defeat monsters to level up and earn coins." << endl;
+    cout << "- Use coins to buy items from the inventory." << endl;
+    cout << "- Battle the boss in each level to progress." << endl;
+    cout << "- Good luck and have fun!" << endl;
+    cout << "**************************************" << endl;
+}
+
+void signUp(Player** currentPlayer) {
+    string username, password;
+    cout << "************ Sign Up ************" << endl;
+    cout << "Enter your username: ";
+    cin >> username;
+    cout << "Enter your password: ";
+    cin >> password;
+    *currentPlayer = new Player(username, password);
+    (*currentPlayer)->createPlayer();
+    cout << "Account created successfully!" << endl;
+}
+
+void logIn(Player** currentPlayer) {
+    string username, password;
+    cout << "************* Log In *************" << endl;
+    cout << "Enter your username: ";
+    cin >> username;
+    cout << "Enter your password: ";
+    cin >> password;
+
+    // Check if the player with the given credentials exists
+    if ((*currentPlayer)->checkCredentials(username, password)) {
+        cout << "Welcome back, " << username << "!" << endl;
+    }
+    else {
+        cout << "Invalid username or password. Please try again." << endl;
+        logIn(currentPlayer);
+    }
+}
+
+void enterGame(Player* currentPlayer) {
+    cout << "************** Game **************" << endl;
+    cout << "Welcome to the game, " << currentPlayer->username << "!" << endl;
+    currentPlayer->printPlayerStats();
+
+    // Implement game logic here
+    currentPlayer->playLevel1();
+    currentPlayer->playLevel2();
+    currentPlayer->playLevel3();
+    currentPlayer->playLevel4();
+    currentPlayer->playLevel5();
+}
+
+void deletePlayer(Player* currentPlayer) {
+    delete currentPlayer;
+}
+
+int main() {
+    srand(static_cast<unsigned int>(time(0))); // Seed for random number generation
+    displayWelcomeMessage();
+    Player* currentPlayer = nullptr;
+    signUp(&currentPlayer);
+    logIn(&currentPlayer);
+    enterGame(currentPlayer);
+    deletePlayer(currentPlayer);
+    return 0;
+}
