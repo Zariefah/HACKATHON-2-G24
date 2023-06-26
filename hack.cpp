@@ -89,6 +89,17 @@ Monster createMonster(int level) {
 
     if (level == 1) {
     	// Goblin Monster
+    	ifstream file("Goblin.txt");
+        if (file.is_open()) { // Check if the file was successfully opened
+        string line;
+        while (getline(file, line)) { // Read each line of the file
+            cout << line << endl; // Output the line to the console
+        }
+
+        file.close(); // Close the file
+    } else {
+        cout << "Failed to open the file." << endl;
+    }
         monster.name = "Goblin";
         monster.level = level;
         monster.health = 50; 
@@ -97,8 +108,30 @@ Monster createMonster(int level) {
         monster.experience = 20;
         // insert file goblin scene
         
+
+        
     } else if (level == 2) {
     	// Zombie Monster
+    	 ifstream inputFile("Zombie.txt");
+	
+	string paragraph;
+    //int paragraphCount = 0;
+    
+	while (getline(inputFile, paragraph)) {
+        if (paragraph.empty()) {
+            // Skip empty lines between paragraphs
+            continue;
+        }
+        
+        cout << paragraph << endl;
+
+        //"Press any key to continue to the next paragraph...";
+        cin.ignore();  // Ignore the user input
+        cout << endl;
+    }
+    
+    inputFile.close();
+
         monster.name = "Zombie";
         monster.level = level;
         monster.health = 70 ;
@@ -109,6 +142,17 @@ Monster createMonster(int level) {
         
     } else {//(level == 3)
     	// White Dragon Monster
+    	ifstream file("White Dragon.txt");
+        if (file.is_open()) { // Check if the file was successfully opened
+        string line;
+        while (getline(file, line)) { // Read each line of the file
+            cout << line << endl; // Output the line to the console
+        }
+
+        file.close(); // Close the file
+    } else {
+        cout << "Failed to open the file." << endl;
+    }
         monster.name = "White Dragon";
         monster.level = level;
         monster.health = 90 ;
