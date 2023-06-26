@@ -66,17 +66,17 @@ Player* createPlayer(const string& name) {
 
 // Function to display player's status
 void displayStatus(const Player* player) {
-    cout << "Name: " << player->name << endl;
+    cout << "Name			: " << player->name << endl;
    // cout << "Age: " << player->age << endl;
     //cout << "Gender: " << player->gender << endl;
-    cout << "Role: " << player->role << endl;
-    cout << "Level: " << player->level << endl;
-    cout << "Strength: " << player->strength << endl;
-    cout << "Speed: " << player->speed << endl;
-    cout << "Physical: " << player->physical << endl;
-    cout << "Magic Power: " << player->magicPower << endl;
-    cout << "Status Points: " << player->statusPoints << endl;
-    cout << "Health: " << player->health << endl;
+    cout << "Role			: " << player->role << endl;
+    cout << "Level			: " << player->level << endl;
+    cout << "Strength		: " << player->strength << endl;
+   // cout << "Speed			: " << player->speed << endl;
+    cout << "Physical		: " << player->physical << endl;
+   // cout << "Magic Power	: " << player->magicPower << endl;
+    cout << "Status Points		: " << player->statusPoints << endl;
+    cout << "Health			: " << player->health << endl;
 }
 
 // Function to create a new monster
@@ -95,18 +95,21 @@ Monster createMonster(int level) {
 
     if (level == 1) {
         monster.name = "Goblin";
+        monster.level = level;
         monster.health = 50; //+ (level - 1) * 10;
         monster.attack = 10; //+ (level - 1) * 2;
         monster.defense = 5; //+ (level - 1) * 1;
         monster.experience = 20;
     } else if (level == 2) {
         monster.name = "Skeleton";
+        monster.level = level;
         monster.health = 70 ;//+ (level - 1) * 10;
         monster.attack = 15 ;//+ (level - 1) * 2;
         monster.defense = 7 ;//+ (level - 1) * 1;
         monster.experience = 30;
     } else if (level == 3){
         monster.name = "Dragon";
+        monster.level = level;
         monster.health = 90 ;//+ (level - 1) * 10;
         monster.attack = 20 ;//+ (level - 1) * 2;
         monster.defense = 10 ;//+ (level - 1) * 1;
@@ -122,15 +125,15 @@ Monster createMonster(int level) {
 void battle(Player& player, Monster& monster) {
     while (player.health > 0 && monster.health > 0) {
         int playerDamage = player.strength - monster.defense;
-        if (playerDamage < 0) {
-            playerDamage = 0;
-        }
+//        if (playerDamage < 0) {
+//            playerDamage = 0;
+//        }
         monster.health -= playerDamage;
 
         int monsterDamage = monster.attack - player.physical;
-        if (monsterDamage < 0) {
-            monsterDamage = 0;
-        }
+//        if (monsterDamage < 0) {
+//            monsterDamage = 0;
+//        }
         player.health -= monsterDamage;
 
 //        cout << "Player attacks the " << monster.name << " for " << playerDamage << " damage." << endl;
@@ -152,9 +155,9 @@ void battle(Player& player, Monster& monster) {
 // Function for Warrior specific skill
 void useWarriorSkill(Player& player, Monster& monster) {
     int playerDamage = player.strength * 2 - monster.defense;
-    if (playerDamage < 0) {
-        playerDamage = 0;
-    }
+//    if (playerDamage < 0) {
+//        playerDamage = 0;
+//    }
     monster.health -= playerDamage;
 
     cout << "Player uses Warrior's skill: Mighty Strike!" << endl;
@@ -164,9 +167,9 @@ void useWarriorSkill(Player& player, Monster& monster) {
 // Function for Mage specific skill
 void useMageSkill(Player& player, Monster& monster) {
     int playerDamage = player.strength + 10 - monster.defense;
-    if (playerDamage < 0) {
-        playerDamage = 0;
-    }
+//    if (playerDamage < 0) {
+//        playerDamage = 0;
+//    }
     monster.health -= playerDamage;
 
     cout << "Player uses Mage's skill: Fireball!" << endl;
@@ -176,9 +179,9 @@ void useMageSkill(Player& player, Monster& monster) {
 // Function for Rogue specific skill
 void useRogueSkill(Player& player, Monster& monster) {
     int playerDamage = player.strength - monster.defense;
-    if (playerDamage < 0) {
-        playerDamage = 0;
-    }
+//    if (playerDamage < 0) {
+//        playerDamage = 0;
+//    }
     monster.health -= playerDamage;
 
     int bonusDamage = rand() % 20 + 10;
@@ -284,7 +287,7 @@ void playGame() {
 
         Monster monster = createMonster(player->level);
 
-        cout << "Prepare to battle a " << monster.name << " (Level " << monster.level << ")!" << endl;
+        cout << "Prepare to battle a " << monster.name << " (Level " << monster.level  << ")!" << endl;
 
         cout << "Press any key to start the battle...";
         cin.ignore();
