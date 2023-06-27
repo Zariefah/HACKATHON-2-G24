@@ -694,7 +694,7 @@ void Player::playLevel2() {
             {
                 cout << "Continuing to the game..." << endl;
                 // Display goblin details
-   				 Monster* monster = new Monster("Zombie", 1, 30);
+   				 Monster* monster = new Monster("Zombie", 2, 30);
 
     			while (true) {                               
         		printWindowStatus();
@@ -832,7 +832,7 @@ void Player::playLevel3() {
             {
                 cout << "Continuing to the game..." << endl;
                 // Display goblin details
-   				 Monster* monster = new Monster("White Dragon", 1, 40);
+   				 Monster* monster = new Monster("White Dragon", 3, 40);
 
     			while (true) {                                     
         		printWindowStatus();
