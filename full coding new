@@ -2,6 +2,7 @@
 #include <string>
 #include <cstdlib>
 #include <ctime>
+#include <fstream>
 
 using namespace std;
 
@@ -207,6 +208,20 @@ private:
         cout << "************** Game **************" << endl;
         cout << "Welcome to the game, " << currentPlayer->username << "!" << endl;
 		
+		     ifstream file("Scenario.txt");
+    if (file.is_open()) {
+        string line;
+        while (getline(file, line)) {
+            // Process each line of the file
+            // Here, you can perform actions based on the scenario content
+            // For example, you can display the line or extract specific information from it
+            cout << line << endl;
+        }
+        file.close();
+    } else {
+        cout << "Unable to open the file." << endl;
+    }
+    
 		currentPlayer->printWindowStatus();
 		
         // Implement game logic here
@@ -515,16 +530,16 @@ bool Player::checkCredentials(string username, string password) {
 }
 
 void Player::playLevel1() {
-//	ifstream file("Goblin.txt");
-//        if (file.is_open()) { // Check if the file was successfully opened
-//        string line;
-//        while (getline(file, line)) { // Read each line of the file
-//            cout << line << endl; // Output the line to the console
-//        }
-//
-//        file.close(); // Close the file
-//    } else {
-//        cout << "Failed to open the file." << endl;
+	ifstream file("Goblin.txt");
+        if (file.is_open()) { // Check if the file was successfully opened
+        string line;
+        while (getline(file, line)) { // Read each line of the file
+            cout << line << endl; // Output the line to the console
+        }
+
+        file.close(); // Close the file
+    } else {
+        cout << "Failed to open the file." << endl;
         
     cout << "You have entered Level 1: Goblin Forest" << endl;
     cout << "Select your option:" << endl;
@@ -651,20 +666,20 @@ playLevel1();
             exit(0);
     }
 }
-//}
+}
         
 
 void Player::playLevel2() {
-//	ifstream file("Zombie.txt");
-//        if (file.is_open()) { // Check if the file was successfully opened
-//        string line;
-//        while (getline(file, line)) { // Read each line of the file
-//            cout << line << endl; // Output the line to the console
-//        }
-//
-//        file.close(); // Close the file
-//    } else {
-//        cout << "Failed to open the file." << endl;
+	ifstream file("Zombie.txt");
+        if (file.is_open()) { // Check if the file was successfully opened
+        string line;
+        while (getline(file, line)) { // Read each line of the file
+            cout << line << endl; // Output the line to the console
+        }
+
+        file.close(); // Close the file
+    } else {
+        cout << "Failed to open the file." << endl;
         
     cout << "You have entered Level 2: Zombie Dark City" << endl;
     cout << "Select your option:" << endl;
@@ -790,19 +805,19 @@ playLevel2();
             exit(0);
     }
 }
-//}
+}
 
 void Player::playLevel3() {
-//	ifstream file("White Dragon.txt");
-//        if (file.is_open()) { // Check if the file was successfully opened
-//        string line;
-//        while (getline(file, line)) { // Read each line of the file
-//            cout << line << endl; // Output the line to the console
-//        }
-//
-//        file.close(); // Close the file
-//    } else {
-//        cout << "Failed to open the file." << endl;
+	ifstream file("White Dragon.txt");
+        if (file.is_open()) { // Check if the file was successfully opened
+        string line;
+        while (getline(file, line)) { // Read each line of the file
+            cout << line << endl; // Output the line to the console
+        }
+
+        file.close(); // Close the file
+    } else {
+        cout << "Failed to open the file." << endl;
         
     cout << "You have entered Level 3: White Dragon Nest" << endl;
     cout << "Select your option:" << endl;
@@ -928,7 +943,7 @@ playLevel3();
             exit(0);
     }
 }
-//}
+}
 
 
 
