@@ -1,0 +1,8 @@
+Name: izzah
+Age: 20
+Role: Mage
+Level: 3
+Gold: 2000
+Strength: 110
+Defense: 35
+Health: 0
