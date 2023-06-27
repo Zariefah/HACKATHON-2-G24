@@ -9,7 +9,7 @@ using namespace std;
 // Define the Item class
 class Item {
 	public:
-		string name;
+	string name;
     	Item(string name) {
         	this->name = name;
     	}
@@ -175,9 +175,9 @@ class Player {
 	
 	   
 	public:
-		string username;  
-		Player(string username, string password);
-		void createPlayer();
+	    string username;  
+	    Player(string username, string password);
+	    void createPlayer();
 	    void printWindowStatus();
 	    void attackMonster(Monster* monster);
 	    void useItem(Monster* monster);
@@ -199,71 +199,71 @@ class Game{
 		}
 		
 	private:
-		void enterGame(Player* currentPlayer) {
-    cout << "************** Game **************" << endl;
-    cout << "Welcome to the game, " << currentPlayer->username << "!" << endl;
-    cout << endl << "************** Main Scenario **************" << endl;
-    // Scenario
-    ifstream scenarioFile("Scenario.txt");
-    string scenarioParagraph;
-    while (getline(scenarioFile, scenarioParagraph)) {
-        if (scenarioParagraph.empty()) {
-            continue;
-        }
-        cout << scenarioParagraph << endl;
-        cout << "Press any key to continue to the next paragraph...";
-        cin.ignore();
-        cout << endl;
-    }
-    
-    currentPlayer->printWindowStatus();
-    
-    // Level 1: Goblin
-    ifstream goblinFile("Goblin.txt");
-    string goblinParagraph;
-    while (getline(goblinFile, goblinParagraph)) {
-        if (goblinParagraph.empty()) {
-            continue;
-        }
-        cout << goblinParagraph << endl;
-        cout << "Press ENTER to continue to the next paragraph...";
-        cin.ignore();
-        cout << endl;
-    }
-    
-    currentPlayer->playLevel1();
-    
-    // Level 2: Zombie
-    ifstream zombieFile("Zombie.txt");
-    string zombieParagraph;
-    while (getline(zombieFile, zombieParagraph)) {
-        if (zombieParagraph.empty()) {
-            continue;
-        }
-        cout << zombieParagraph << endl;
-        cout << "Press ENTER to continue to the next paragraph...";
-        cin.ignore();
-        cout << endl;
-    }
-    
-    currentPlayer->playLevel2();
-    
-    // Level 3: White Dragon
-    ifstream dragonFile("White Dragon.txt");
-    string dragonParagraph;
-    while (getline(dragonFile, dragonParagraph)) {
-        if (dragonParagraph.empty()) {
-            continue;
-        }
-        cout << dragonParagraph << endl;
-        cout << "Press ENTER to continue to the next paragraph...";
-        cin.ignore();
-        cout << endl;
-    }
-    
-    currentPlayer->playLevel3();
-}
-};
+	    void enterGame(Player* currentPlayer) {
+	    cout << "************** Game **************" << endl;
+	    cout << "Welcome to the game, " << currentPlayer->username << "!" << endl;
+	    cout << endl << "************** Main Scenario **************" << endl;
+	    // Scenario
+	    ifstream scenarioFile("Scenario.txt");
+	    string scenarioParagraph;
+	    while (getline(scenarioFile, scenarioParagraph)) {
+	        if (scenarioParagraph.empty()) {
+	            continue;
+	        }
+	        cout << scenarioParagraph << endl;
+	        cout << "Press any key to continue to the next paragraph...";
+	        cin.ignore();
+	        cout << endl;
+	    }
+	    
+	    currentPlayer->printWindowStatus();
+	    
+	    // Level 1: Goblin
+	    ifstream goblinFile("Goblin.txt");
+	    string goblinParagraph;
+	    while (getline(goblinFile, goblinParagraph)) {
+	        if (goblinParagraph.empty()) {
+	            continue;
+	        }
+	        cout << goblinParagraph << endl;
+	        cout << "Press ENTER to continue to the next paragraph...";
+	        cin.ignore();
+	        cout << endl;
+	    }
+	    
+	    currentPlayer->playLevel1();
+	    
+	    // Level 2: Zombie
+	    ifstream zombieFile("Zombie.txt");
+	    string zombieParagraph;
+	    while (getline(zombieFile, zombieParagraph)) {
+	        if (zombieParagraph.empty()) {
+	            continue;
+	        }
+	        cout << zombieParagraph << endl;
+	        cout << "Press ENTER to continue to the next paragraph...";
+	        cin.ignore();
+	        cout << endl;
+	    }
+	    
+	    currentPlayer->playLevel2();
+	    
+	    // Level 3: White Dragon
+	    ifstream dragonFile("White Dragon.txt");
+	    string dragonParagraph;
+	    while (getline(dragonFile, dragonParagraph)) {
+	        if (dragonParagraph.empty()) {
+	            continue;
+	        }
+	        cout << dragonParagraph << endl;
+	        cout << "Press ENTER to continue to the next paragraph...";
+	        cin.ignore();
+	        cout << endl;
+	    }
+	    
+	    currentPlayer->playLevel3();
+	}
+	};
 
 // Monster class implementation
 Monster::Monster(string name, int level, int health) {
@@ -277,13 +277,13 @@ string Monster::getName() {
 }
 
 void Monster::printMonsterStats() {
-	cout << endl << "----------------------------------------" << endl;
+    cout << endl << "----------------------------------------" << endl;
     cout << "\t\tMonster Status" << endl;
     cout << endl << "----------------------------------------" << endl;
     cout << "\t\tName: " << name << endl;
     cout << "\t\tLevel: " << level << endl;
     cout << "\t\tHealth: " << health << endl;
-    	cout << endl << "----------------------------------------" << endl;
+    cout << endl << "----------------------------------------" << endl;
 }
 
 void Monster::decreaseHealth(int amount) {
@@ -321,7 +321,7 @@ void Player::createPlayer() {
 }
 
 void Player::printWindowStatus() {
-	cout << "----------------------------------------" << endl;
+    cout << "----------------------------------------" << endl;
     cout << "\t\tWindow Status" << endl;
     cout << "----------------------------------------" << endl;
     cout << "\t\tName: " << name << endl;
