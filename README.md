@@ -89,6 +89,23 @@ A linked list plays a crucial role in managing the players inventory in our codi
  
 By using a linked list, players can dynamically add and remove items from the inventory without the need to allocate a fixed-size array. The linked list allows for efficient insertion and deletion operations, making it suitable for managing a dynamic collection of items.
 
+### SCREENSHOT OF THE GAME TERMINAL
+
+![photo_2023-06-28_22-55-14](https://github.com/Zariefah/HACKATHON-2-G24/assets/117891931/81d64ff5-94c6-403e-8dcb-ab0d897b320c)
+
+![photo_2023-06-28_22-55-49](https://github.com/Zariefah/HACKATHON-2-G24/assets/117891931/a420e91c-77bd-4a2f-b851-b4212d457701)
+
+![photo_2023-06-28_22-56-05](https://github.com/Zariefah/HACKATHON-2-G24/assets/117891931/2a27f80b-21a7-4abb-bf19-057cf4d26a76)
+
+![photo_2023-06-28_22-56-16](https://github.com/Zariefah/HACKATHON-2-G24/assets/117891931/5b37ba6c-5d1c-4fd2-b5a5-6f05db19e769)
+
+![photo_2023-06-28_22-56-23](https://github.com/Zariefah/HACKATHON-2-G24/assets/117891931/c09c48c0-b68c-4569-977d-a3b69144fa9a)
+
+![photo_2023-06-28_22-54-05](https://github.com/Zariefah/HACKATHON-2-G24/assets/117891931/670d81ee-fed4-441a-ac4d-2cb2124ea234)
+
+![photo_2023-06-28_22-56-18](https://github.com/Zariefah/HACKATHON-2-G24/assets/117891931/af959629-2ea0-4f1e-ba5b-df03cb30ac24)
+
+![photo_2023-06-28_22-54-19](https://github.com/Zariefah/HACKATHON-2-G24/assets/117891931/cefee8cb-1371-48be-bdf7-23788f1055dc)
 
 
 
