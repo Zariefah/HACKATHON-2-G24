@@ -82,17 +82,8 @@ These object-oriented concepts help organise the code, promote reusability, and 
 A linked list plays a crucial role in managing the players inventory in our coding. Here's how it works:
 
 1. Adding an item: When the player purchases a new item, the addItem function is called. This function creates a new Node object with the item's information and inserts it into the linked list. If the list is empty, the new node becomes the head of the list. Otherwise, the new node is inserted at the end of the list by traversing through the existing nodes using the next pointers.
-
- 
-
 2. Removing an item: When the player sells or discards an item, the removeItem function is called. This function searches for the node containing the item to be removed by traversing through the linked list. Once found, the function adjusts the next pointers of the previous and next nodes to bypass the node to be removed, effectively removing it from the list.
-
- 
-
 3. Retrieving an item: The getItem function allows the player to search for a specific item in the inventory. It traverses the linked list, comparing the item's information with each node's item. If a match is found, the function returns a pointer to the node containing the item. Otherwise, it returns a null pointer, indicating that the item is not present in the inventory.
-
- 
-
 4. Displaying the items: The displayItems function is responsible for printing the details of all the items in the inventory. It traverses through the linked list, starting from the head node, and prints the information for each item.
 
  
