@@ -34,7 +34,7 @@
 2. Log in option: enable existing players to access their account and continue their gaming progress.
 3. Main Scenario : establishing the basis for the game's main story while giving players a compelling plot to guide their actions and quests. 
 4. Window status of player: print relevant informations about the player which are; name ,age,role,level,gold,strength,defense and health of player 
-5. Sub Scenario (Goblin Forest, Zombie Dark City, White Dragon) :  Providing players with a variety gaming situation or encounters which include numerous type of enemy they must contend with, such as goblins, zombies, or the strong monster white Dragon.
+5. Sub Scenario (Goblin Forest, Zombie Dark City, White Dragon Holy Nest) :  Providing players with a variety gaming situation or encounters which include numerous type of enemy they must contend with, such as goblins, zombies, or the strong monster white Dragon.
 6. Monster Status:Print name of monster at each level, the monster level and health.
 7. Attack option: Allow player to engage in combat with the encountered monster, starting battle scene which the player can use the power or skill of the role to fight the opponent.
 8. Use item option: Give benefits to players to win this game by utilizing the items player purchased and it will boosts player abilities such as increased their strength or enhanced magical powers to defeat the great monster. 
