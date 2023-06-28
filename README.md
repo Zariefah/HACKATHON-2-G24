@@ -77,7 +77,7 @@ These object-oriented concepts help organise the code, promote reusability, and 
 
 
 
-### How Linked lists play a role in our game.
+### HOW LINKED LISTS PLAY A ROLE IN OUR GAME
 
 A linked list plays a crucial role in managing the players inventory in our coding. Here's how it works:
 
